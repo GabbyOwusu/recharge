@@ -1,6 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:recharge/screens/recharge_screen.dart';
+import 'package:recharge/widgets/home_card.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -40,26 +42,28 @@ class _MyHomePageState extends State<MyHomePage> {
         children: [
           Flexible(
             flex: 1,
-            child: Container(
-              margin: EdgeInsets.all(30),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Center(
-                child: Text('Hi'),
-              ),
+            child: HomeCard(
+              ontapped: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return RechargeScreen();
+                    },
+                  ),
+                );
+              },
+              imageAsset: 'images/reload.png',
+              label: 'Scan and load\nrecharge card',
             ),
           ),
           SizedBox(height: 20),
           Flexible(
             flex: 1,
-            child: Container(
-              margin: EdgeInsets.all(30),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-              ),
+            child: HomeCard(
+              ontapped: () {},
+              imageAsset: 'images/balance.png',
+              label: 'Check your\nairtime balance',
             ),
           ),
         ],
