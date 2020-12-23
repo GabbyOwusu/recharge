@@ -20,18 +20,22 @@ class Onboarding extends StatelessWidget {
             Text(
               'Welcome',
               style: TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.w600,
+                fontSize: 30,
+                fontWeight: FontWeight.w400,
               ),
             ),
             SizedBox(height: 50),
             Text(
-              'Lorem ipsum dolor sit amet, consectetur\n' +
-                  'adipiscing elit, sed do eiusmod tempor\n' +
-                  'incididunt ut labore et dolore magna aliqua.\n' +
+              'Lorem ipsum dolor sit amet, consectetur' +
+                  'adipiscing \nelit, sed do eiusmod tempor' +
+                  'incididunt ut labore\n et dolore magna aliqua.' +
                   'Ut enim ad minim',
               textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.grey, fontSize: 15),
+              style: TextStyle(
+                color: Colors.grey,
+                fontSize: 15,
+                fontWeight: FontWeight.w300,
+              ),
             )
           ],
         ),
