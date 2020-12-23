@@ -16,7 +16,7 @@ class _SplashState extends State<Splash> {
       () {
         setState(() => visible = true);
         Future.delayed(
-          Duration(seconds: 3),
+          Duration(seconds: 5),
           () {
             Navigator.pushReplacement(
               context,
@@ -45,7 +45,8 @@ class _SplashState extends State<Splash> {
             text: TextSpan(
               style: TextStyle(
                 fontWeight: FontWeight.w600,
-                fontSize: 30,
+                fontSize: 50,
+                fontFamily: 'Montserrat',
               ),
               children: [
                 TextSpan(
