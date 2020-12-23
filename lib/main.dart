@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
       title: 'Recharge',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        fontFamily: 'Montserrat',
       ),
       home: Splash(),
     );
