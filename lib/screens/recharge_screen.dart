@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:recharge/screens/done_screen.dart';
+import 'package:recharge/widgets/image_selector_button.dart';
 
 class RechargeScreen extends StatefulWidget {
   @override
@@ -6,16 +8,24 @@ class RechargeScreen extends StatefulWidget {
 }
 
 class _RechargeScreenState extends State<RechargeScreen> {
+  String currentCarrier = 'Vodafone';
+
+  List<String> carriers = [
+    'Vodafone',
+    'Mtn',
+    'AirtelTigo',
+  ];
+
+  List<String> images = [
+    'images/vodafone.png',
+    'images/airteltigo.png',
+    'images/mtn.jpg',
+  ];
+
+  int currentIndex = 3;
+
   @override
   Widget build(BuildContext context) {
-    String currentCarrier;
-
-    List<String> carriers = [
-      'Vodafone',
-      'Mtn',
-      'AirtelTigo',
-    ];
-
     return Scaffold(
       backgroundColor: Color.fromRGBO(249, 249, 249, 1),
       appBar: AppBar(
@@ -43,6 +53,20 @@ class _RechargeScreenState extends State<RechargeScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
+              padding: EdgeInsets.all(30),
+              child: Row(
+                children: [
+                  Icon(Icons.help),
+                  SizedBox(width: 10),
+                  Expanded(
+                    child: Text(
+                        'Choose your carrier and then select where to get the recharge card image to be scanned'),
+                  )
+                ],
+              ),
+            ),
+            Spacer(),
+            Padding(
               padding: const EdgeInsets.only(left: 30),
               child: Text(
                 'Select your carrier',
@@ -63,39 +87,59 @@ class _RechargeScreenState extends State<RechargeScreen> {
                 children: [
                   Image.asset('images/vodafone.png', width: 30),
                   SizedBox(width: 10),
-                  Text(
-                    currentCarrier ?? 'Select',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w300,
+                  Expanded(
+                    child: DropdownButton<String>(
+                      value: currentCarrier,
+                      underline: SizedBox(),
+                      dropdownColor: Colors.white,
+                      isExpanded: true,
+                      icon: Icon(
+                        Icons.keyboard_arrow_down,
+                        color: Colors.black,
+                      ),
+                      elevation: 0,
+                      items: carriers.map((String carrier) {
+                        return DropdownMenuItem<String>(
+                          value: carrier,
+                          child: Text(carrier),
+                        );
+                      }).toList(),
+                      onChanged: (newvalue) {
+                        setState(() {
+                          currentCarrier = newvalue;
+                        });
+                      },
                     ),
-                  ),
-                  Spacer(),
-                  DropdownButton<String>(
-                    icon: Icon(
-                      Icons.keyboard_arrow_down,
-                      color: Colors.black,
-                    ),
-                    elevation: 0,
-                    items: carriers.map((String carrier) {
-                      return DropdownMenuItem<String>(
-                        value: carrier,
-                        child: Text(carrier),
-                      );
-                    }).toList(),
-                    onChanged: (newvalue) {
-                      setState(() {
-                        currentCarrier = newvalue;
-                        print('Current carrier $currentCarrier');
-                      });
-                      setState(() {});
-                    },
                   )
                 ],
               ),
             ),
+            Spacer(),
+            ImageSelector(
+              ontapped: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return Done();
+                }));
+              },
+              icon: Icons.camera,
+              label: 'Camera',
+            ),
+            ImageSelector(
+              ontapped: () {},
+              icon: Icons.image,
+              label: 'Gallery',
+            ),
           ],
         ),
       ),
+      // bottomSheet: Container(
+      //   height: 180,
+      //   child: Column(
+      //     children: [
+
+      //     ],
+      //   ),
+      // ),
     );
   }
 }
