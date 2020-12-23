@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:recharge/screens/recharge_screen.dart';
 import 'package:recharge/widgets/home_card.dart';
@@ -24,6 +22,7 @@ class _MyHomePageState extends State<MyHomePage> {
             style: TextStyle(
               fontWeight: FontWeight.w600,
               fontSize: 20,
+              fontFamily: 'Montserrat',
             ),
             children: [
               TextSpan(
