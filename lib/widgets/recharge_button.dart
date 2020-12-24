@@ -28,9 +28,7 @@ class RechargeButton extends StatelessWidget {
           decoration: BoxDecoration(
             color: buttonColor,
             borderRadius: BorderRadius.circular(10),
-            border: Border.all(
-              color: borderColor,
-            ),
+            border: Border.all(color: borderColor),
           ),
           child: Center(
             child: Text(
