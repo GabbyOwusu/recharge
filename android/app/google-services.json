@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "721916372685",
+    "project_id": "recharge-fcb09",
+    "storage_bucket": "recharge-fcb09.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:721916372685:android:c0b8f24631cf2efbfbab84",
+        "android_client_info": {
+          "package_name": "com.example.recharge"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "721916372685-s2d67e4b7o2c52va6oq646tg2a59b1r9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmkDnDiLY8Vh2vEz3cCbIvmwDFCiUn4KM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "721916372685-s2d67e4b7o2c52va6oq646tg2a59b1r9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
