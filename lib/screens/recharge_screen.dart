@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:recharge/providers/file_provider.dart';
 import 'package:recharge/screens/done_screen.dart';
 import 'package:recharge/widgets/image_selector_button.dart';
 
@@ -23,6 +25,10 @@ class _RechargeScreenState extends State<RechargeScreen> {
   ];
 
   int currentIndex = 3;
+
+  FileProvider get provider {
+    return Provider.of<FileProvider>(context, listen: false);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -117,9 +123,10 @@ class _RechargeScreenState extends State<RechargeScreen> {
             Spacer(),
             ImageSelector(
               ontapped: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return Done();
-                }));
+                provider.getImageFromCamera();
+                // Navigator.push(context, MaterialPageRoute(builder: (context) {
+                //   return Done();
+                // }));
               },
               icon: Icons.camera,
               label: 'Camera',
@@ -132,14 +139,6 @@ class _RechargeScreenState extends State<RechargeScreen> {
           ],
         ),
       ),
-      // bottomSheet: Container(
-      //   height: 180,
-      //   child: Column(
-      //     children: [
-
-      //     ],
-      //   ),
-      // ),
     );
   }
 }
