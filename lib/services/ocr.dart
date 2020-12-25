@@ -1,1 +1,22 @@
-class OCR {}
+import 'dart:io';
+
+import 'package:firebase_ml_vision/firebase_ml_vision.dart';
+
+class OCR {
+  TextRecognizer textRecognizer = FirebaseVision.instance.textRecognizer();
+  VisionText visionText;
+
+  Future readImage({File pickedimage}) async {
+    String value = '';
+    FirebaseVisionImage image = FirebaseVisionImage.fromFile(pickedimage);
+    VisionText text = await textRecognizer.processImage(image);
+    for (TextBlock block in text.blocks) {
+      for (TextLine line in block.lines) {
+        for (TextElement word in line.elements) {
+          value = word.text;
+          return value;
+        }
+      }
+    }
+  }
+}
