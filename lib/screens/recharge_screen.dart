@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:recharge/providers/file_provider.dart';
 import 'package:recharge/screens/done_screen.dart';
@@ -125,7 +126,7 @@ class _RechargeScreenState extends State<RechargeScreen> {
               icon: Icons.camera,
               label: 'Camera',
               ontapped: () {
-                provider.getImageFromCamera().then(
+                provider.getImage(ImageSource.camera).then(
                   (image) {
                     return Navigator.push(
                       context,
@@ -141,7 +142,7 @@ class _RechargeScreenState extends State<RechargeScreen> {
               icon: Icons.image,
               label: 'Gallery',
               ontapped: () {
-                provider.getImageFromGallery().then(
+                provider.getImage(ImageSource.gallery).then(
                   (image) {
                     return Navigator.push(
                       context,
