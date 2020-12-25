@@ -27,17 +27,23 @@ class HomeCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset(
-                imageAsset,
-                width: 100,
+              Expanded(
+                flex: 1,
+                child: Image.asset(
+                  imageAsset,
+                  width: 100,
+                ),
               ),
               Spacer(),
-              Text(
-                label,
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.green,
-                  fontWeight: FontWeight.w600,
+              Expanded(
+                flex: 2,
+                child: Text(
+                  label,
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.green,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
             ],
