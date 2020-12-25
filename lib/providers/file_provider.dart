@@ -20,7 +20,7 @@ class FileProvider extends BaseProvider {
     notifyListeners();
   }
 
-  Future galleryImage() async {
+  Future getImageFromGallery() async {
     final picture = await service.galleryImage();
     if (picture != null) {
       _image = File(picture.path);
