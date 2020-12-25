@@ -122,19 +122,36 @@ class _RechargeScreenState extends State<RechargeScreen> {
             ),
             Spacer(),
             ImageSelector(
-              ontapped: () {
-                provider.getImageFromCamera();
-                // Navigator.push(context, MaterialPageRoute(builder: (context) {
-                //   return Done();
-                // }));
-              },
               icon: Icons.camera,
               label: 'Camera',
+              ontapped: () {
+                provider.getImageFromCamera().then(
+                  (image) {
+                    return Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Done(),
+                      ),
+                    );
+                  },
+                );
+              },
             ),
             ImageSelector(
-              ontapped: () {},
               icon: Icons.image,
               label: 'Gallery',
+              ontapped: () {
+                provider.getImageFromGallery().then(
+                  (image) {
+                    return Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Done(),
+                      ),
+                    );
+                  },
+                );
+              },
             ),
           ],
         ),
