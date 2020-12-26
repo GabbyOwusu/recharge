@@ -19,11 +19,7 @@ class _RechargeScreenState extends State<RechargeScreen> {
     'AirtelTigo',
   ];
 
-  List<String> images = [
-    'images/vodafone.png',
-    'images/airteltigo.png',
-    'images/mtn.jpg',
-  ];
+  String carrierImage = 'images/vodafone.png';
 
   int currentIndex = 3;
 
@@ -92,7 +88,7 @@ class _RechargeScreenState extends State<RechargeScreen> {
               ),
               child: Row(
                 children: [
-                  Image.asset('images/vodafone.png', width: 30),
+                  Image.asset(carrierImage, width: 30),
                   SizedBox(width: 10),
                   Expanded(
                     child: DropdownButton<String>(
@@ -114,6 +110,13 @@ class _RechargeScreenState extends State<RechargeScreen> {
                       onChanged: (newvalue) {
                         setState(() {
                           currentCarrier = newvalue;
+                          if (currentCarrier == 'Mtn') {
+                            carrierImage = 'images/mtn.jpg';
+                          } else if (currentCarrier == 'AirtelTigo') {
+                            carrierImage = 'images/airteltigo.png';
+                          } else if (currentCarrier == 'Vodafone') {
+                            carrierImage = 'images/vodafone.png';
+                          }
                         });
                       },
                     ),
@@ -131,7 +134,9 @@ class _RechargeScreenState extends State<RechargeScreen> {
                     return Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => Done(),
+                        builder: (context) => Done(
+                          source: ImageSource.camera,
+                        ),
                       ),
                     );
                   },
@@ -147,7 +152,9 @@ class _RechargeScreenState extends State<RechargeScreen> {
                     return Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => Done(),
+                        builder: (context) => Done(
+                          source: ImageSource.gallery,
+                        ),
                       ),
                     );
                   },
