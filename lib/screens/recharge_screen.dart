@@ -129,14 +129,12 @@ class _RechargeScreenState extends State<RechargeScreen> {
               icon: Icons.camera,
               label: 'Camera',
               ontapped: () {
-                provider.getImage(ImageSource.camera).then(
-                  (image) {
-                    return Navigator.push(
+                provider.processImage(ImageSource.camera).then(
+                  (val) {
+                    Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => Done(
-                          source: ImageSource.camera,
-                        ),
+                        builder: (context) => Done(),
                       ),
                     );
                   },
@@ -147,14 +145,12 @@ class _RechargeScreenState extends State<RechargeScreen> {
               icon: Icons.image,
               label: 'Gallery',
               ontapped: () {
-                provider.getImage(ImageSource.gallery).then(
-                  (image) {
-                    return Navigator.push(
+                provider.processImage(ImageSource.gallery).then(
+                  (val) {
+                    Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => Done(
-                          source: ImageSource.gallery,
-                        ),
+                        builder: (context) => Done(),
                       ),
                     );
                   },
