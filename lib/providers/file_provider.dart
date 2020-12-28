@@ -26,8 +26,6 @@ class FileProvider extends BaseProvider {
     return _image;
   }
 
-  notifyListeners();
-
   Future processImage(ImageSource source) async {
     File visionimage = await getImage(source);
     final text = await ocr.readImage(
@@ -43,7 +41,7 @@ class FileProvider extends BaseProvider {
   }
 
   Future<void> runUssd(String code) async {
-    await Ussd.runUssd('*134*$code');
+    await Ussd.runUssd('*134*$code#');
     notifyListeners();
   }
 }
