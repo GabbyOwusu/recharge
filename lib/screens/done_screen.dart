@@ -3,8 +3,12 @@ import 'package:provider/provider.dart';
 
 import 'package:recharge/providers/file_provider.dart';
 import 'package:recharge/widgets/recharge_button.dart';
+import 'package:share/share.dart';
 
 class Done extends StatefulWidget {
+  final String text;
+
+  const Done({Key key, this.text}) : super(key: key);
   @override
   _DoneState createState() => _DoneState();
 }
