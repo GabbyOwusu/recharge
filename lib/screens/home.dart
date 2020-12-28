@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:recharge/screens/recharge_screen.dart';
 import 'package:recharge/widgets/home_card.dart';
+import 'package:ussd/ussd.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -8,6 +9,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  bool isRunning = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,7 +63,17 @@ class _MyHomePageState extends State<MyHomePage> {
           Flexible(
             flex: 1,
             child: HomeCard(
-              ontapped: () {},
+              ontapped: () {
+                setState(() {
+                  isRunning = true;
+                });
+                Ussd.runUssd('*124#').then((val) {
+                  print(val);
+                  setState(() {
+                    isRunning = false;
+                  });
+                });
+              },
               imageAsset: 'images/balance.png',
               label: 'Check your\nairtime balance',
             ),
