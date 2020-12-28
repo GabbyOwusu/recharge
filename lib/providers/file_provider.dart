@@ -5,6 +5,7 @@ import 'package:recharge/providers/baseprovider.dart';
 import 'package:recharge/services/fileservice.dart';
 import 'package:recharge/services/ocr.dart';
 import 'package:recharge/services/sl.dart';
+import 'package:ussd/ussd.dart';
 
 class FileProvider extends BaseProvider {
   File _image;
@@ -38,6 +39,11 @@ class FileProvider extends BaseProvider {
       _extractedText = '';
       print('Sorry no text was obtained');
     }
+    notifyListeners();
+  }
+
+  Future<void> runUssd(String code) async {
+    await Ussd.runUssd('*134*$code');
     notifyListeners();
   }
 }
