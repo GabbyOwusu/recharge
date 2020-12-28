@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.recharge">
+   <uses-permission android:name="android.permission.CALL_PHONE"/> 
    <application
         android:label="recharge"
         android:icon="@mipmap/ic_launcher">
