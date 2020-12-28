@@ -28,14 +28,11 @@ class FileProvider extends BaseProvider {
 
   Future processImage(ImageSource source) async {
     File visionimage = await getImage(source);
-    final text = await ocr.readImage(
-      pickedimage: File(visionimage.path),
-    );
-    if (text != null) {
-      _extractedText = text;
-    } else {
-      _extractedText = '';
+    final text = await ocr.readImage(pickedimage: File(visionimage.path));
+    if (text == null) {
       print('Sorry no text was obtained');
+    } else {
+      _extractedText = text.text;
     }
     notifyListeners();
   }
