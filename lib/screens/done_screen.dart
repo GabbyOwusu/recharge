@@ -73,7 +73,9 @@ class _DoneState extends State<Done> {
                     borderColor: Colors.transparent,
                     textColor: Colors.white,
                     buttonLabel: 'Recharge',
-                    ontapped: () {},
+                    ontapped: () {
+                      // provider.runUssd(provider.extracted);
+                    },
                   ),
                 ),
                 Expanded(
@@ -83,7 +85,9 @@ class _DoneState extends State<Done> {
                     borderColor: Colors.green,
                     textColor: Colors.green,
                     buttonLabel: 'Share',
-                    ontapped: () {},
+                    ontapped: () {
+                      // Share.share(provider.extracted);
+                    },
                   ),
                 ),
               ],
@@ -91,10 +95,6 @@ class _DoneState extends State<Done> {
           ],
         ),
       ),
-      // bottomSheet: Container(
-
-      //   child:
-      // ),
     );
   }
 }
