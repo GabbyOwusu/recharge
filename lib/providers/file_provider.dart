@@ -15,23 +15,27 @@ class FileProvider extends BaseProvider {
   final service = sl.get<FileService>();
   final ocr = sl.get<OCR>();
 
-  Future getImage(ImageSource imagesorce) async {
-    final picture = await service.cameraImage(imagesorce);
+  Future<File> getImage(ImageSource imagesorce) async {
+    PickedFile picture = await service.cameraImage(imagesorce);
     if (picture != null) {
       _image = File(picture.path);
-      return _image;
     } else {
       print('No image selected');
     }
-    notifyListeners();
+    return _image;
   }
 
+  notifyListeners();
+
   Future processImage(ImageSource source) async {
-    final visionimage = await getImage(source);
-    final text = await ocr.readImage(pickedimage: File(visionimage.path));
+    File visionimage = await getImage(source);
+    final text = await ocr.readImage(
+      pickedimage: File(visionimage.path),
+    );
     if (text != null) {
       _extractedText = text;
     } else {
+      _extractedText = '';
       print('Sorry no text was obtained');
     }
     notifyListeners();
