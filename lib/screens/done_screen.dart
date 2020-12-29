@@ -47,23 +47,35 @@ class _DoneState extends State<Done> {
             ),
             SizedBox(height: 50),
             Text(
-              provider.extracted != ''
-                  ? 'Your voucher was scanned successfully'
-                  : 'Sorry rescan image',
+              provider.extracted == '' ||
+                      provider.extracted.length > 14 ||
+                      provider.extracted.length < 14
+                  ? 'Sorry rescan image'
+                  : 'Voucher was scanned succesfully',
             ),
             SizedBox(height: 50),
             Container(
               height: 50,
               decoration: BoxDecoration(
-                color: provider.extracted == ''
+                color: provider.extracted == '' ||
+                        provider.extracted.length > 14 ||
+                        provider.extracted.length < 14
                     ? Colors.transparent
                     : Colors.green,
                 shape: BoxShape.circle,
               ),
               child: Center(
                 child: Icon(
-                  provider.extracted == '' ? Icons.cancel_outlined : Icons.done,
-                  color: provider.extracted == '' ? Colors.red : Colors.white,
+                  provider.extracted == '' ||
+                          provider.extracted.length > 14 ||
+                          provider.extracted.length < 14
+                      ? Icons.cancel_outlined
+                      : Icons.done,
+                  color: provider.extracted == '' ||
+                          provider.extracted.length > 14 ||
+                          provider.extracted.length < 14
+                      ? Colors.red
+                      : Colors.white,
                 ),
               ),
             ),
