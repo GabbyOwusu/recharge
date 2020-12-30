@@ -6,9 +6,6 @@ import 'package:recharge/widgets/recharge_button.dart';
 import 'package:share/share.dart';
 
 class Done extends StatefulWidget {
-  final String text;
-
-  const Done({Key key, this.text}) : super(key: key);
   @override
   _DoneState createState() => _DoneState();
 }
@@ -21,7 +18,6 @@ class _DoneState extends State<Done> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
