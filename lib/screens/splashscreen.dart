@@ -16,7 +16,7 @@ class _SplashState extends State<Splash> {
       () {
         setState(() => visible = true);
         Future.delayed(
-          Duration(seconds: 5),
+          Duration(seconds: 3),
           () {
             Navigator.pushReplacement(
               context,
