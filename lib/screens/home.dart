@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
+import 'package:recharge/providers/file_provider.dart';
+import 'package:recharge/screens/done_screen.dart';
 import 'package:recharge/screens/recharge_screen.dart';
 import 'package:recharge/widgets/home_card.dart';
 import 'package:ussd/ussd.dart';
@@ -10,6 +14,10 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   bool isRunning = false;
+
+  FileProvider get provider {
+    return Provider.of<FileProvider>(context, listen: false);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +47,24 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
         ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.wallpaper),
+            color: Colors.black,
+            onPressed: () {
+              provider.processImage(ImageSource.gallery).then(
+                (val) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Done(),
+                    ),
+                  );
+                },
+              );
+            },
+          )
+        ],
       ),
       body: Column(
         children: [
@@ -46,13 +72,15 @@ class _MyHomePageState extends State<MyHomePage> {
             flex: 1,
             child: HomeCard(
               ontapped: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return RechargeScreen();
-                    },
-                  ),
+                provider.processImage(ImageSource.camera).then(
+                  (val) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Done(),
+                      ),
+                    );
+                  },
                 );
               },
               imageAsset: 'images/reload.png',
@@ -64,15 +92,14 @@ class _MyHomePageState extends State<MyHomePage> {
             flex: 1,
             child: HomeCard(
               ontapped: () {
-                setState(() {
-                  isRunning = true;
-                });
-                Ussd.runUssd('*124#').then((val) {
-                  print(val);
-                  setState(() {
-                    isRunning = false;
-                  });
-                });
+                Ussd.runUssd('*124#').then(
+                  (val) {
+                    print(val);
+                    setState(() {
+                      isRunning = false;
+                    });
+                  },
+                );
               },
               imageAsset: 'images/balance.png',
               label: 'Check your\nairtime balance',
