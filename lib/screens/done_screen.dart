@@ -15,12 +15,30 @@ class Done extends StatefulWidget {
 
 class _DoneState extends State<Done> {
   FileProvider get provider {
-    return Provider.of<FileProvider>(context);
+    return Provider.of<FileProvider>(context, listen: false);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // backgroundColor: Colors.white,
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        title: Text(
+          'Go back',
+          style: TextStyle(
+            color: Colors.black,
+          ),
+        ),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          color: Colors.black,
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
       body: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -90,7 +108,7 @@ class _DoneState extends State<Done> {
                     textColor: Colors.white,
                     buttonLabel: 'Recharge',
                     ontapped: () {
-                      // provider.runUssd(provider.extracted);
+                      provider.runUssd(provider.extracted);
                     },
                   ),
                 ),
@@ -102,7 +120,7 @@ class _DoneState extends State<Done> {
                     textColor: Colors.green,
                     buttonLabel: 'Share',
                     ontapped: () {
-                      // Share.share(provider.extracted);
+                      Share.share(provider.extracted);
                     },
                   ),
                 ),
