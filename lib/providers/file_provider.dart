@@ -31,17 +31,15 @@ class FileProvider extends BaseProvider {
     FirebaseVisionImage image = FirebaseVisionImage.fromFile(visionimage);
     VisionText text = await textRecognizer.processImage(image);
     for (TextBlock block in text.blocks) {
+      print(block.text);
       final blocknumbers = block.text.replaceAll(new RegExp(r'[^0-9]'), '');
       if (blocknumbers.length == 14) {
         _extractedText = blocknumbers;
         print('Voucher digits here .....$_extractedText');
-      } else if (blocknumbers.length > 14 || blocknumbers.length < 14) {
-        _extractedText = 'Your voucher digits exceeds limit';
-        print('$blocknumbers is more than 14 digits');
+      } else if (blocknumbers == null) {
+        _extractedText = ' ';
+        print('$blocknumbers is more  than 14 digits');
       }
-    }
-    if (text.text == null) {
-      _extractedText = '';
     }
     notifyListeners();
     // textRecognizer.close();
