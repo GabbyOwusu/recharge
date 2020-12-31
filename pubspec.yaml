@@ -24,13 +24,13 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.0
-  provider: ^4.3.2+3
   firebase_ml_vision: ^0.9.10
-  image_picker: ^0.6.7+17
   get_it: ^5.0.3
-  ussd: ^0.0.2+1
+  image_picker: ^0.6.7+17
+  provider: ^4.3.2+3
   share: ^0.6.5+4
-  
+  shared_preferences: ^0.5.12+4
+  ussd: ^0.0.2+1
 
 dev_dependencies:
   flutter_test:
@@ -69,13 +69,12 @@ flutter:
           weight: 800
         - asset: assets/fonts/Montserrat-Hairline.otf
           weight: 200
-        - asset: assets/fonts/Montserrat-Light.otf  
+        - asset: assets/fonts/Montserrat-Light.otf
           weight: 300
         - asset: assets/fonts/Montserrat-SemiBold.otf
           weight: 600
         - asset: assets/fonts/Montserrat-UltraLight.otf
           weight: 100
-
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
