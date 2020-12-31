@@ -3,7 +3,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:recharge/providers/file_provider.dart';
 import 'package:recharge/screens/done_screen.dart';
-import 'package:recharge/screens/recharge_screen.dart';
+import 'package:recharge/services/fileservice.dart';
+import 'package:recharge/services/sl.dart';
 import 'package:recharge/widgets/home_card.dart';
 import 'package:ussd/ussd.dart';
 
@@ -13,7 +14,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  bool isRunning = false;
+  final service = sl.get<FileService>();
 
   FileProvider get provider {
     return Provider.of<FileProvider>(context, listen: false);
@@ -74,12 +75,16 @@ class _MyHomePageState extends State<MyHomePage> {
               ontapped: () {
                 provider.processImage(ImageSource.camera).then(
                   (val) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Done(),
-                      ),
-                    );
+                    if (provider.picture != null) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return Done();
+                          },
+                        ),
+                      );
+                    }
                   },
                 );
               },
@@ -92,14 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
             flex: 1,
             child: HomeCard(
               ontapped: () {
-                Ussd.runUssd('*124#').then(
-                  (val) {
-                    print(val);
-                    setState(() {
-                      isRunning = false;
-                    });
-                  },
-                );
+                Ussd.runUssd('*124#');
               },
               imageAsset: 'images/balance.png',
               label: 'Check your\nairtime balance',
