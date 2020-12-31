@@ -61,15 +61,13 @@ class _OnboardingState extends State<Onboarding> {
                 description: 'An easier and more convienient way of ' +
                     'topping up \nairtimefrom recharge cards. ' +
                     'Scratch the card gently.\nTake a clear picture of ' +
-                    'the section containing the\nvoucher digits.',
+                    'the section containing the\nvoucher digits for more accurate results.',
               ),
               PageViewChild(
                 title: 'Get Started',
                 image: 'images/card.png',
                 description:
-                    '''Thats it!. In a few easy steps, you can top up your \nairtime or easily
-                     share voucher code with
-                     friends and family. Get started.''',
+                    '''Thats it!. In a few easy steps, you can top up your \nairtime or easily share voucher code with friends and family. Get started.''',
               ),
             ],
           ),
