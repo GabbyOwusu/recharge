@@ -9,6 +9,7 @@ import 'package:ussd/ussd.dart';
 
 class FileProvider extends BaseProvider {
   File _image;
+  File get picture => _image;
 
   String _extractedText = '';
   String get extracted => _extractedText;
@@ -28,17 +29,23 @@ class FileProvider extends BaseProvider {
 
   Future processImage(ImageSource source) async {
     File visionimage = await getImage(source);
-    FirebaseVisionImage image = FirebaseVisionImage.fromFile(visionimage);
-    VisionText text = await textRecognizer.processImage(image);
-    for (TextBlock block in text.blocks) {
-      print(block.text);
-      final blocknumbers = block.text.replaceAll(new RegExp(r'[^0-9]'), '');
-      if (blocknumbers.length == 14) {
-        _extractedText = blocknumbers;
-        print('Voucher digits here .....$_extractedText');
-      } else if (blocknumbers == null) {
-        _extractedText = ' ';
-        print('$blocknumbers is more  than 14 digits');
+    if (visionimage != null) {
+      FirebaseVisionImage image = FirebaseVisionImage.fromFile(visionimage);
+      VisionText text = await textRecognizer.processImage(image);
+      for (TextBlock block in text.blocks) {
+        print(block.text);
+        final blocknumbers = block.text.replaceAll(new RegExp(r'[^0-9]'), '');
+        if (blocknumbers.length == 14) {
+          _extractedText = blocknumbers;
+          print('Voucher digits here .....$_extractedText');
+        } else if (blocknumbers == null) {
+          _extractedText = '';
+          print('$blocknumbers is more  than 14 digits. $_extractedText');
+        }
+      }
+      if (_extractedText.length != 14) {
+        _extractedText = '';
+        print('Retake picture $_extractedText');
       }
     }
     notifyListeners();
