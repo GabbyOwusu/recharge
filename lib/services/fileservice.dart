@@ -4,7 +4,10 @@ class FileService {
   ImagePicker picker = ImagePicker();
 
   Future<PickedFile> cameraImage(ImageSource source) async {
-    final pickedFile = await picker.getImage(source: source);
+    final pickedFile = await picker.getImage(
+      source: source,
+      preferredCameraDevice: CameraDevice.rear,
+    );
     return pickedFile;
   }
 }
