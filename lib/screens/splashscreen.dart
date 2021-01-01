@@ -10,23 +10,34 @@ class Splash extends StatefulWidget {
 
 class _SplashState extends State<Splash> {
   bool visible = false;
+  bool firstRun = false;
 
   Future checkFirstSeen() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool _seen = (prefs.getBool('seen') ?? false);
 
     if (_seen) {
+      print('App has already been run $_seen');
       Navigator.of(context).pushReplacement(
-          new MaterialPageRoute(builder: (context) => MyHomePage()));
+        MaterialPageRoute(
+          builder: (context) {
+            return MyHomePage();
+          },
+        ),
+      );
     } else {
+      print('First time running TRUE');
       await prefs.setBool('seen', true);
-      Navigator.of(context).pushReplacement(
-          new MaterialPageRoute(builder: (context) => new Onboarding()));
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            return Onboarding();
+          },
+        ),
+      );
     }
   }
-
-  @override
-  void afterFirstLayout(BuildContext context) => checkFirstSeen();
 
   @override
   void initState() {
@@ -37,14 +48,15 @@ class _SplashState extends State<Splash> {
         Future.delayed(
           Duration(seconds: 3),
           () {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) {
-                  return Onboarding();
-                },
-              ),
-            );
+            checkFirstSeen();
+            // Navigator.pushReplacement(
+            //   context,
+            //   MaterialPageRoute(
+            //     builder: (context) {
+            //       return firstRun ? Onboarding() : MyHomePage();
+            //     },
+            //   ),
+            // );
           },
         );
       },
