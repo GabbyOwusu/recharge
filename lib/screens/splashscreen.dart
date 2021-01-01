@@ -49,14 +49,7 @@ class _SplashState extends State<Splash> {
           Duration(seconds: 3),
           () {
             checkFirstSeen();
-            // Navigator.pushReplacement(
-            //   context,
-            //   MaterialPageRoute(
-            //     builder: (context) {
-            //       return firstRun ? Onboarding() : MyHomePage();
-            //     },
-            //   ),
-            // );
+            
           },
         );
       },
