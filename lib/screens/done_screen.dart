@@ -115,8 +115,8 @@ class _DoneState extends State<Done> {
                     borderColor: Colors.green,
                     textColor: Colors.green,
                     buttonLabel: 'Share',
-                    ontapped: () {
-                      Share.share(provider.extracted);
+                    ontapped: () async {
+                      await Share.share(provider.extracted);
                     },
                   ),
                 ),
