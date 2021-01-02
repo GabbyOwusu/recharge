@@ -49,7 +49,6 @@ class _SplashState extends State<Splash> {
           Duration(seconds: 3),
           () {
             checkFirstSeen();
-            
           },
         );
       },
@@ -75,7 +74,9 @@ class _SplashState extends State<Splash> {
               children: [
                 TextSpan(
                   text: 'Re',
-                  style: TextStyle(color: Colors.blue),
+                  style: TextStyle(
+                    color: Color.fromRGBO(11, 89, 168, 1),
+                  ),
                 ),
                 TextSpan(
                   text: 'charge',
