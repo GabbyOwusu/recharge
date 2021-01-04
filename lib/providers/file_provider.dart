@@ -49,11 +49,13 @@ class FileProvider extends BaseProvider {
       }
     }
     notifyListeners();
-    // textRecognizer.close();
   }
 
   Future<void> runUssd(String code) async {
-    await Ussd.runUssd('*134*$code#');
+    if (code == '')
+      return;
+    else
+      await Ussd.runUssd('*134*$code#');
     notifyListeners();
   }
 }
