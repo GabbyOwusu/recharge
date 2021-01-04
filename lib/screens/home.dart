@@ -76,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child: HomeCard(
               ontapped: () {
                 provider.processImage(ImageSource.camera).then(
-                  (val) {
+                  (_) {
                     if (provider.picture != null) {
                       Navigator.push(
                         context,
@@ -98,8 +98,8 @@ class _MyHomePageState extends State<MyHomePage> {
           Flexible(
             flex: 1,
             child: HomeCard(
-              ontapped: () {
-                Ussd.runUssd('*124#');
+              ontapped: () async {
+                await Ussd.runUssd('*124#');
               },
               imageAsset: 'images/balance.png',
               label: 'Check your\nairtime balance',
