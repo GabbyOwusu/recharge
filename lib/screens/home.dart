@@ -77,16 +77,14 @@ class _MyHomePageState extends State<MyHomePage> {
               ontapped: () {
                 provider.processImage(ImageSource.camera).then(
                   (_) {
-                    if (provider.picture != null) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return Done();
-                          },
-                        ),
-                      );
-                    }
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return Done();
+                        },
+                      ),
+                    );
                   },
                 );
               },
