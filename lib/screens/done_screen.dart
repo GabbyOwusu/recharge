@@ -61,9 +61,7 @@ class _DoneState extends State<Done> {
             ),
             SizedBox(height: 50),
             Text(
-              provider.extracted == '' ||
-                      provider.extracted.length > 14 ||
-                      provider.extracted.length < 14
+              provider.extracted == ''
                   ? 'Sorry rescan image'
                   : 'Voucher was scanned succesfully',
             ),
@@ -71,25 +69,15 @@ class _DoneState extends State<Done> {
             Container(
               height: 50,
               decoration: BoxDecoration(
-                color: provider.extracted == '' ||
-                        provider.extracted.length > 14 ||
-                        provider.extracted.length < 14
+                color: provider.extracted == ''
                     ? Colors.transparent
                     : Colors.green,
                 shape: BoxShape.circle,
               ),
               child: Center(
                 child: Icon(
-                  provider.extracted == '' ||
-                          provider.extracted.length > 14 ||
-                          provider.extracted.length < 14
-                      ? Icons.cancel_outlined
-                      : Icons.done,
-                  color: provider.extracted == '' ||
-                          provider.extracted.length > 14 ||
-                          provider.extracted.length < 14
-                      ? Colors.red
-                      : Colors.white,
+                  provider.extracted == '' ? Icons.cancel_outlined : Icons.done,
+                  color: provider.extracted == '' ? Colors.red : Colors.white,
                 ),
               ),
             ),
