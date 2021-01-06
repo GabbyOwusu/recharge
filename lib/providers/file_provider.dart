@@ -35,18 +35,24 @@ class FileProvider extends BaseProvider {
       for (TextBlock block in text.blocks) {
         print(block.text);
         final blocknumbers = block.text.replaceAll(new RegExp(r'[^0-9]'), '');
+
+        print(
+            'final block numbers ........................$blocknumbers length: ${blocknumbers.length}');
         if (blocknumbers.length == 14) {
           _extractedText = blocknumbers;
           print('Voucher digits here .....$_extractedText');
+        } else if (blocknumbers.length == 16) {
+          _extractedText = blocknumbers;
+          print('16 digits here .....$_extractedText');
         } else if (blocknumbers == null) {
           _extractedText = '';
           print('$blocknumbers is more  than 14 digits. $_extractedText');
         }
       }
-      if (_extractedText.length != 14) {
-        _extractedText = '';
-        print('Retake picture $_extractedText');
-      }
+      // if (_extractedText.length != 14 || _extractedText.length != 16) {
+      //   _extractedText = '';
+      //   print('Retake picture $_extractedText');
+      // }
     }
     notifyListeners();
   }
