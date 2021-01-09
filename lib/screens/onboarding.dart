@@ -59,7 +59,7 @@ class _OnboardingState extends State<Onboarding> {
                 title: 'Welcome',
                 image: 'images/illustration.png',
                 description: 'An easier and more convienient way of ' +
-                    'topping up \nairtimefrom recharge cards. ' +
+                    'topping up \nairtime from recharge cards. ' +
                     'Scratch the card gently.\nTake a clear picture of ' +
                     'the section containing the\nvoucher digits for more accurate results.',
               ),
