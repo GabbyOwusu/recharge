@@ -12,7 +12,7 @@ class FileProvider extends BaseProvider {
   File _image;
   File get picture => _image;
 
-  String _extractedText = '';
+  String _extractedText;
   String get extracted => _extractedText;
   TextRecognizer textRecognizer = FirebaseVision.instance.textRecognizer();
 
@@ -28,8 +28,7 @@ class FileProvider extends BaseProvider {
     return _image;
   }
 
-  Future processImage(ImageSource source) async {
-    File visionimage = await getImage(source);
+  Future processImage(File visionimage) async {
     if (visionimage != null) {
       FirebaseVisionImage image = FirebaseVisionImage.fromFile(visionimage);
       VisionText text = await textRecognizer.processImage(image);
@@ -43,14 +42,10 @@ class FileProvider extends BaseProvider {
           _extractedText = blocknumbers;
           print('16 digits here .....$_extractedText');
         } else if (blocknumbers == null) {
-          _extractedText = '';
+          _extractedText = null;
           print('$blocknumbers is more  than 14 digits. $_extractedText');
         }
       }
-      // if (_extractedText.length != 14 || _extractedText.length != 16) {
-      //   _extractedText = '';
-      //   print('Retake picture $_extractedText');
-      // }
     }
     notifyListeners();
   }
