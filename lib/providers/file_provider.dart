@@ -1,11 +1,12 @@
 import 'dart:io';
 
+import 'package:ussd/ussd.dart';
 import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 import 'package:image_picker/image_picker.dart';
+
 import 'package:recharge/providers/baseprovider.dart';
 import 'package:recharge/services/fileservice.dart';
 import 'package:recharge/services/sl.dart';
-import 'package:ussd/ussd.dart';
 
 class FileProvider extends BaseProvider {
   File _image;
@@ -35,9 +36,6 @@ class FileProvider extends BaseProvider {
       for (TextBlock block in text.blocks) {
         print(block.text);
         final blocknumbers = block.text.replaceAll(new RegExp(r'[^0-9]'), '');
-
-        print(
-            'final block numbers ........................$blocknumbers length: ${blocknumbers.length}');
         if (blocknumbers.length == 14) {
           _extractedText = blocknumbers;
           print('Voucher digits here .....$_extractedText');
