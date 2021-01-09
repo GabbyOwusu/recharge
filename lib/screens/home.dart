@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
@@ -55,16 +57,20 @@ class _MyHomePageState extends State<MyHomePage> {
             icon: Icon(Icons.wallpaper),
             color: Colors.black,
             onPressed: () {
-              provider.processImage(ImageSource.gallery).then(
-                (val) {
+              service.cameraImage(ImageSource.gallery).then((value) {
+                if (value.path == null) {
+                  return;
+                } else {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Done(),
+                      builder: (context) => Done(
+                        image: File(value?.path),
+                      ),
                     ),
                   );
-                },
-              );
+                }
+              });
             },
           ),
         ],
@@ -75,18 +81,20 @@ class _MyHomePageState extends State<MyHomePage> {
             flex: 1,
             child: HomeCard(
               ontapped: () {
-                provider.processImage(ImageSource.camera).then(
-                  (_) {
+                service.cameraImage(ImageSource.camera).then((value) {
+                  if (value.path == null) {
+                    return;
+                  } else {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) {
-                          return Done();
-                        },
+                        builder: (context) => Done(
+                          image: File(value?.path),
+                        ),
                       ),
                     );
-                  },
-                );
+                  }
+                });
               },
               imageAsset: 'images/reload.png',
               label: 'Scan and load\nrecharge card',
