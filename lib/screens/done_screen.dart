@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 import 'package:recharge/providers/file_provider.dart';
@@ -6,6 +9,9 @@ import 'package:recharge/widgets/recharge_button.dart';
 import 'package:share/share.dart';
 
 class Done extends StatefulWidget {
+  final File image;
+
+  const Done({Key key, this.image}) : super(key: key);
   @override
   _DoneState createState() => _DoneState();
 }
@@ -14,6 +20,21 @@ class _DoneState extends State<Done> {
   FileProvider get provider {
     return Provider.of<FileProvider>(context, listen: false);
   }
+
+  void initState() {
+    processImage(widget.image);
+    super.initState();
+  }
+
+  Future processImage(File image) async {
+    await provider.processImage(image).then((_) {
+      setState(() {
+        isLoading = false;
+      });
+    });
+  }
+
+  bool isLoading = true;
 
   @override
   Widget build(BuildContext context) {
@@ -51,9 +72,9 @@ class _DoneState extends State<Done> {
             ),
             SizedBox(height: 100),
             Text(
-              provider.extracted == ''
+              isLoading
                   ? 'Your voucher will appear here'
-                  : provider.extracted,
+                  : provider.extracted ?? 'Please rescan',
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 fontSize: 20,
@@ -61,23 +82,35 @@ class _DoneState extends State<Done> {
             ),
             SizedBox(height: 50),
             Text(
-              provider.extracted == ''
-                  ? 'Sorry rescan image'
-                  : 'Voucher was scanned succesfully',
+              isLoading
+                  ? 'Scanning...'
+                  : (provider.extracted == null)
+                      ? 'Failed to scan image'
+                      : 'Scanned Successfully',
             ),
             SizedBox(height: 50),
             Container(
               height: 50,
               decoration: BoxDecoration(
-                color: provider.extracted == ''
-                    ? Colors.transparent
-                    : Colors.green,
+                color: isLoading
+                    ? Colors.white
+                    : (provider.extracted == null)
+                        ? Colors.transparent
+                        : Colors.green,
                 shape: BoxShape.circle,
               ),
               child: Center(
                 child: Icon(
-                  provider.extracted == '' ? Icons.cancel_outlined : Icons.done,
-                  color: provider.extracted == '' ? Colors.red : Colors.white,
+                  isLoading
+                      ? Icons.done
+                      : provider.extracted == null
+                          ? Icons.cancel_outlined
+                          : Icons.done,
+                  color: isLoading
+                      ? Colors.white
+                      : provider.extracted == null
+                          ? Colors.red
+                          : Colors.white,
                 ),
               ),
             ),
