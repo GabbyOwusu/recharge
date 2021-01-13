@@ -93,7 +93,7 @@ class _DoneState extends State<Done> {
               height: 50,
               decoration: BoxDecoration(
                 color: isLoading
-                    ? Colors.white
+                    ? Colors.transparent
                     : (provider.extracted == null)
                         ? Colors.transparent
                         : Colors.green,
@@ -107,7 +107,7 @@ class _DoneState extends State<Done> {
                           ? Icons.cancel_outlined
                           : Icons.done,
                   color: isLoading
-                      ? Colors.white
+                      ? Colors.transparent
                       : provider.extracted == null
                           ? Colors.red
                           : Colors.white,
