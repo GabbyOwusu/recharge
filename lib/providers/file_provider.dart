@@ -20,10 +20,10 @@ class FileProvider extends BaseProvider {
 
   Future<File> getImage(ImageSource imagesorce) async {
     PickedFile picture = await service.cameraImage(imagesorce);
-    if (picture != null) {
+    if (picture.path != null) {
       _image = File(picture.path);
     } else {
-      print('No image selected');
+      _image = null;
     }
     return _image;
   }
@@ -33,7 +33,6 @@ class FileProvider extends BaseProvider {
       FirebaseVisionImage image = FirebaseVisionImage.fromFile(visionimage);
       VisionText text = await textRecognizer.processImage(image);
       for (TextBlock block in text.blocks) {
-        print(block.text);
         final blocknumbers = block.text.replaceAll(new RegExp(r'[^0-9]'), '');
         if (blocknumbers.length == 14) {
           _extractedText = blocknumbers;
