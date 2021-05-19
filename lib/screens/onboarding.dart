@@ -67,7 +67,7 @@ class _OnboardingState extends State<Onboarding> {
                 title: 'Get Started',
                 image: 'images/card.png',
                 description:
-                    '''Thats it!. In a few easy steps, you can top up your \nairtime or easily share voucher code with friends and family. Get started.''',
+                    'Thats it!. In a few easy steps, you can top up your \nairtime or easily share voucher code with friends and family. Get started.',
               ),
             ],
           ),
