@@ -57,15 +57,15 @@ class _MyHomePageState extends State<MyHomePage> {
             icon: Icon(Icons.wallpaper),
             color: Colors.black,
             onPressed: () {
-              service.cameraImage(ImageSource.gallery).then((value) {
-                if (value.path == null) {
+              service.cameraImage(ImageSource.gallery).then((file) {
+                if (file.path == null) {
                   return;
                 } else {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => Done(
-                        image: File(value?.path),
+                        image: File(file.path),
                       ),
                     ),
                   );
@@ -89,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => Done(
-                          image: File(value?.path),
+                          image: File(value.path),
                         ),
                       ),
                     );
