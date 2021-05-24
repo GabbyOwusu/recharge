@@ -1,6 +1,13 @@
-# recharge
+# Recharge
 
-A new Flutter project.
+
+A simple app that allows users take pictures of recharge cards and load airtime instantly without hustle
+
+## Features
+
+- Extract airtime digits from scratchcard
+- Load airtime instantly
+- Check users' airtime balance
 
 ## Getting Started
 
